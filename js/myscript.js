@@ -6,16 +6,18 @@ createApp({
     data(){
         return{
             contacts,
-            lastMessage: ''
+            currentId: 2
         }
     },
     methods:{
-        printLastMessage(){
-            
+        changeActiveId(id){
+           return this.currentId = id;
         }
     },
-    computed(){
-
+    computed:{
+        activeId(){
+            return this.contacts.find((el)=> el.id === this.currentId);
+        }
     },
     mounted(){
         console.log(this.contacts);
