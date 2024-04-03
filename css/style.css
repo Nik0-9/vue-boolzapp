@@ -90,3 +90,19 @@ small {
     overflow-y: auto;
     background-image: url('../img/mine.jpg');
 }
+
+.message{
+    border: 1px solid gray;
+    width: 300px;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.sent{
+    background-color: #D5F9BA;
+    margin-left: auto;
+}
+
+.received{
+    background-color: white;
+}
