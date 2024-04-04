@@ -2,50 +2,51 @@ import { contacts } from "./data.js";
 
 const date = luxon.DateTime;
 
-const {createApp} = Vue;
+const { createApp } = Vue;
 
 createApp({
-    data(){
-        return{
+    data() {
+        return {
             contacts,
             currentId: 1,
             textMessage: '',
             searchText: ''
         }
     },
-    methods:{
-        changeActiveId(id){
-           this.currentId = id;
+    methods: {
+        changeActiveId(id) {
+            this.currentId = id;
         },
-        createMessage(msg,status){
+        createMessage(msg, status) {
             const newMessage = {
                 date: date.now().setLocale('it').toFormat('dd/MM/yyyy hh:mm:ss'),
                 message: msg,
                 status: status
             }
             // return newMessage;
+            if(msg.trim){
+                return
+            }
             this.activeContact.messages.push(newMessage);
 
         },
-        sendMessage(){
+        sendMessage() {
             this.createMessage(this.textMessage, 'sent')
-            
             this.textMessage = '';
-            setTimeout(()=>{
-            this.createMessage('ok', 'received')
-            },1000);
+            setTimeout(() => {
+                this.createMessage('ok', 'received')
+            }, 1000);
         },
-        
     },
-    computed:{
-        activeContact(){
-            return this.contacts.find((el)=> el.id === this.currentId);
+    computed: {
+        activeContact() {
+            return this.contacts.find((el) => el.id === this.currentId);
         },
-        contactsFiltered(){
-            return this.contacts.filter((el)=>el.name.toLowerCase().includes(this.searchText.toLowerCase()))
+        contactsFiltered() {
+            return this.contacts.filter((el) => el.name.toLowerCase().includes(this.searchText.toLowerCase()));
         }
     },
-    mounted(){
+    mounted() {
         console.log(this.contacts);
     }
 }).mount('#app')

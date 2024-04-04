@@ -71,7 +71,7 @@ i {
     border-bottom: 1px solid lightgray;
 }
 
-.contact-text,
+.contact-text>
 small {
     color: gray;
 }
@@ -92,19 +92,21 @@ small {
 }
 
 .message{
-    border: 1px solid gray;
+    /* border: 1px solid rgb(252, 252, 252); */
     width: 300px;
-    padding: 10px;
-    border-radius: 15px;
+    padding: 5px 10px;
+    border-radius: 18px;
     margin: 10px;
     overflow-wrap: break-word;
 }
 
 .sent{
+    border: 2px solid  #D5F9BA;
     background-color: #D5F9BA;
     margin-left: auto;
 }
 
 .received{
+    border: 2px solid  #ffffff;
     background-color: white;
 }

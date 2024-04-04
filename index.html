@@ -20,7 +20,9 @@
 <body>
     <div id="app">
         <div class="container h-100 bg-light d-flex p-0">
+            <!-- LATO SINISTRO -->
             <div class="left border-end">
+                <!-- PROFILO -->
                 <div class="toolbar d-flex justify-content-between p-2 ">
                     <div>
                         <img src="img/avatar.png" alt="avatar" class="img-fluid ">
@@ -32,6 +34,7 @@
                         <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
                     </div>
                 </div>
+                <!-- SEZIONE NOTIFICHE -->
                 <div class="notification d-flex align-items-center px-2">
                     <div class="bell d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-bell-slash fa-xl"></i>
@@ -41,17 +44,19 @@
                         <small>Attiva notifiche desktop</small>
                     </div>
                 </div>
+                <!-- SEARCH BAR -->
                 <div class="searchbar ">
                     <input type="text" class="form-control  p-2" placeholder="&#128269; cerca o inizia una nuova chat" v-model="searchText">
 
                 </div>
+                <!-- LISTA CONTATTI -->
                 <div class="contacts">
                     <div class="alert alert-danger m-2 mt-3" v-if="contactsFiltered.length<1">Non ci sono contatti con questo nome</div>
                     <div class="contact d-flex align-content-start p-2" :class="{'active' : currentId === contact.id}" v-for="(contact, index) in contactsFiltered" :key="contact.id" @click="changeActiveId(contact.id)">
                         <div class="px-2">
                             <img :src="contact.avatar" :alt="contact.name" class="img-fluid ">
                         </div>
-                        <div class="contanct-text">
+                        <div class="contact-text">
                             <h5>{{contact.name}}</h5>
                             <small>Ultimo messaggio</small>
                         </div>
@@ -62,7 +67,9 @@
                     </div>
                 </div>
             </div>
+            <!-- LATO DESTRO -->
             <div class="right">
+                <!-- PROFILO UTENTE ATTIVO E TOOLBAR -->
                 <div class="toolbar d-flex align-items-center justify-content-between p-2">
                     <div class="ps-2 d-flex ">
                         <img :src="activeContact.avatar" :alt="activeContact.name" class="img-fluid">
@@ -71,24 +78,30 @@
                             <small>Ultimo accesso</small>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center gap-3 pe-2">
+                    <div class="d-flex align-items-center gap-4 pe-2">
                         <i class="fa-solid fa-magnifying-glass fa-xl"></i>
                         <i class="fa-solid fa-paperclip fa-xl"></i>
                         <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
                     </div>
                 </div>
+                <!-- SEZIONE CHAT -->
                 <div class="chat px-4 py-2">
                     <div v-for="(message, index) in activeContact.messages">
                         <div class="message" :class="message.status">
-                            <span>{{message.message}} </span>
-                            <div><small>{{message.date}}</small></div>
+                            <div>{{message.message}} </div>
+                            <div class="text-end">
+                                <small>
+                                    {{message.date}}
+                                </small>
+                            </div>
                         </div>
                     </div>
 
                 </div>
+                <!-- SEZIONE INVIO MESSAGGI -->
                 <div class="toolbar d-flex align-items-center justify-content-evenly">
                     <i class="fa-regular fa-face-smile fa-xl"></i>
-                    <input type="text" class="form-control w-75 " placeholder="scrivi un messaggio" v-model="textMessage" @keyup.enter="sendMessage"> 
+                    <input type="text" class="form-control w-75 " placeholder="scrivi un messaggio" v-model.trim="textMessage" @keyup.enter="sendMessage"> 
                     <i class="fa-solid fa-microphone fa-xl"></i>
                 </div>
             </div>
