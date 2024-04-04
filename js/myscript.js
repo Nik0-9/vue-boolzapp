@@ -11,21 +11,21 @@ createApp({
             currentId: 1,
             textMessage: '',
             searchText: '',
-            currentMessageIndex: -1,
+            dropdownOpen: -1,
         }
     },
     methods: {
-        changeActiveId(id) {
+        changeActiveContact(id) {
             this.currentId = id;
+            this.dropdownOpen = -1;
         },
         createMessage(msg, status) {
             const newMessage = {
-                date: date.now().setLocale('it').toFormat('dd/MM/yyyy hh:mm:ss'),
+                date: date.now().setLocale('it').toFormat('HH:mm:ss'),
                 message: msg,
                 status: status
             }
-            return newMessage
-            
+            return newMessage;
         },
         sendMessage() {
            const msg = this.createMessage(this.textMessage, 'sent');
@@ -39,10 +39,10 @@ createApp({
             }, 1000);
         },
         toggleDropdown(index){
-            if( this.currentMessageIndex != index){
-                this.currentMessageIndex = index;
+            if( this.dropdownOpen != index){
+                this.dropdownOpen = index;
             }else{
-                this.currentMessageIndex = -1;
+                this.dropdownOpen = -1;
             }
         },
         deleteMessage(index,){

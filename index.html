@@ -58,16 +58,20 @@
                     </div>
                     <div class="contact d-flex align-content-start p-2" :class="{'active' : currentId === contact.id}"
                         v-for="(contact, index) in contactsFiltered" :key="contact.id"
-                        @click="changeActiveId(contact.id)">
+                        @click="changeActiveContact(contact.id)">
                         <div class="px-2">
                             <img :src="contact.avatar" :alt="contact.name" class="img-fluid ">
                         </div>
                         <div class="contact-text">
                             <h5>{{contact.name}}</h5>
-                            <small>Ultimo messaggio</small>
+                            <div>
+                                <small v-if="">{{}}</small>
+                                <small>{{contact.messages[contact.messages.length-1].message}}</small>
+
+                            </div>
                         </div>
                         <small class="time ms-auto ">
-                            12:55
+                            {{contact.messages[contact.messages.length-1].date}}
                         </small>
 
                     </div>
@@ -99,7 +103,7 @@
                                 <button class="btn" type="button" @click="toggleDropdown(index)">
                                     <i class="fa-solid fa-chevron-down fa-xs"></i>
                                 </button>
-                                <ul class="dropdownMenu" v-if="currentMessageIndex === index">
+                                <ul class="dropdownMenu" v-if="dropdownOpen === index">
                                     <li @click="deleteMessage(index)">Elimina messaggio</li>
                                 </ul>
                             </div>
