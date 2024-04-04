@@ -53,7 +53,7 @@
                         </div>
                         <div class="contanct-text">
                             <h5>{{contact.name}}</h5>
-                            <small>{{lastMessageDate}}</small>
+                            <small>Ultimo messaggio</small>
                         </div>
                         <small class="time ms-auto ">
                             12:55
@@ -77,11 +77,11 @@
                         <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
                     </div>
                 </div>
-                <div class="chat p-4">
+                <div class="chat px-4 py-2">
                     <div v-for="(message, index) in activeContact.messages">
                         <div class="message" :class="message.status">
-                            <div>{{message.date}}</div>
                             <span>{{message.message}} </span>
+                            <div><small>{{message.date}}</small></div>
                         </div>
                     </div>
 

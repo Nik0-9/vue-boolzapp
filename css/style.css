@@ -41,7 +41,7 @@ i {
     height: 70px;
 }
 
-.notification-textsmall {
+.notification-text>small {
     color: gray;
     text-decoration: underline;
 }
@@ -97,6 +97,7 @@ small {
     padding: 10px;
     border-radius: 15px;
     margin: 10px;
+    overflow-wrap: break-word;
 }
 
 .sent{

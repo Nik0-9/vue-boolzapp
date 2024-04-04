@@ -35,10 +35,7 @@ createApp({
             this.createMessage('ok', 'received')
             },1000);
         },
-        // lastMessageDate(){
-        //    const lastMessage = '';
-        //     return lastMessage = activeContact.messages.forEach((el)=> el.message);
-        //    });
+        
     },
     computed:{
         activeContact(){
