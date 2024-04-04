@@ -6,16 +6,30 @@ createApp({
     data(){
         return{
             contacts,
-            currentId: 2
+            currentId: 1,
+            textMessage: ''
         }
     },
     methods:{
         changeActiveId(id){
-           return this.currentId = id;
-        }
+           this.currentId = id;
+        },
+        sendMessage(){
+            const newMessage = {
+                date: new Date().toLocaleString(),
+                message: this.textMessage,
+                status: 'sent'
+            }
+            this.activeContact.messages.push(newMessage);
+            this.textMessage = '';
+        },
+        // lastMessageDate(){
+        //    const lastMessage = '';
+        //     return lastMessage = activeContact.messages.forEach((el)=> el.message);
+        //    });
     },
     computed:{
-        activeId(){
+        activeContact(){
             return this.contacts.find((el)=> el.id === this.currentId);
         }
     },
