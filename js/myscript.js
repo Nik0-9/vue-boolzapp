@@ -1,5 +1,7 @@
 import { contacts } from "./data.js";
 
+const date = luxon.DateTime;
+
 const {createApp} = Vue;
 
 createApp({
@@ -16,12 +18,20 @@ createApp({
         },
         sendMessage(){
             const newMessage = {
-                date: new Date().toLocaleString(),
+                date: date.now().setLocale('it').toFormat('dd/MM/yyyy hh:mm:ss'),
                 message: this.textMessage,
                 status: 'sent'
             }
             this.activeContact.messages.push(newMessage);
             this.textMessage = '';
+            setTimeout(()=>{
+                const newMessage = {
+                    date: date.now().setLocale('it').toFormat('dd/MM/yyyy hh:mm:ss'),
+                    message: 'ok',
+                    status: 'received'
+                }
+            this.activeContact.messages.push(newMessage);
+            },1000);
         },
         // lastMessageDate(){
         //    const lastMessage = '';
