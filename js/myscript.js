@@ -9,7 +9,8 @@ createApp({
         return{
             contacts,
             currentId: 1,
-            textMessage: ''
+            textMessage: '',
+            searchText: ''
         }
     },
     methods:{
@@ -42,6 +43,9 @@ createApp({
     computed:{
         activeContact(){
             return this.contacts.find((el)=> el.id === this.currentId);
+        },
+        contactsFiltered(){
+            return this.contacts.filter((el)=>el.name.toLowerCase().includes(this.searchText.toLowerCase()))
         }
     },
     mounted(){

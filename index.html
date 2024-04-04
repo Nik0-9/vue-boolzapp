@@ -37,16 +37,16 @@
                         <i class="fa-solid fa-bell-slash fa-xl"></i>
                     </div>
                     <div class="notification-text px-2">
-                        <div>Ricevi notifiche di nuovi messaggi</div>
+                        <div >Ricevi notifiche di nuovi messaggi</div>
                         <small>Attiva notifiche desktop</small>
                     </div>
                 </div>
                 <div class="searchbar ">
-                    <input type="text" class="form-control  p-2" placeholder="&#128269; cerca o inizia una nuova chat">
+                    <input type="text" class="form-control  p-2" placeholder="&#128269; cerca o inizia una nuova chat" v-model="searchText">
 
                 </div>
                 <div class="contacts">
-                    <div class="contact d-flex align-content-start p-2" :class="{'active' : currentId === contact.id}" v-for="(contact, index) in contacts" :key="contact.id" @click="changeActiveId(contact.id)">
+                    <div class="contact d-flex align-content-start p-2" :class="{'active' : currentId === contact.id}" v-for="(contact, index) in contactsFiltered" :key="contact.id" @click="changeActiveId(contact.id)">
                         <div class="px-2">
                             <img :src="contact.avatar" :alt="contact.name" class="img-fluid ">
                         </div>
