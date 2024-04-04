@@ -8,6 +8,11 @@ body {
     font-family: "Reddit Mono", monospace;
 }
 
+li{
+    list-style: none;
+    font-size: 0.9rem;
+}
+
 .nf-debug {
     border: 1px solid red;
 }
@@ -98,6 +103,7 @@ small {
     border-radius: 18px;
     margin: 10px;
     overflow-wrap: break-word;
+    position: relative;
 }
 
 .sent{
@@ -109,4 +115,14 @@ small {
 .received{
     border: 2px solid  #ffffff;
     background-color: white;
+}
+
+.dropdownMenu{
+    position: absolute;
+    padding: 5px;
+    right: 10px;
+    top: 40px;
+    width: 150px;
+    background-color: lightgray;
+    border-radius: 8px;
 }

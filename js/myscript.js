@@ -10,7 +10,8 @@ createApp({
             contacts,
             currentId: 1,
             textMessage: '',
-            searchText: ''
+            searchText: '',
+            currentMessageIndex: -1,
         }
     },
     methods: {
@@ -23,19 +24,30 @@ createApp({
                 message: msg,
                 status: status
             }
-            // return newMessage;
-            if(msg.trim){
-                return
-            }
-            this.activeContact.messages.push(newMessage);
-
+            return newMessage
+            
         },
         sendMessage() {
-            this.createMessage(this.textMessage, 'sent')
+           const msg = this.createMessage(this.textMessage, 'sent');
+            if(this.textMessage.trim() === ''){
+                return
+            }
+            this.activeContact.messages.push(msg);
             this.textMessage = '';
             setTimeout(() => {
-                this.createMessage('ok', 'received')
+                this.activeContact.messages.push(this.createMessage('ok', 'received'));
             }, 1000);
+        },
+        toggleDropdown(index){
+            if( this.currentMessageIndex != index){
+                this.currentMessageIndex = index;
+            }else{
+                this.currentMessageIndex = -1;
+            }
+        },
+        deleteMessage(index,){
+            this.activeContact.messages.splice(index, 1);
+            this.toggleDropdown(index);
         },
     },
     computed: {
