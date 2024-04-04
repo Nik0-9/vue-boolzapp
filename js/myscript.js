@@ -21,7 +21,7 @@ createApp({
         },
         createMessage(msg, status) {
             const newMessage = {
-                date: date.now().setLocale('it').toFormat('HH:mm:ss'),
+                date: date.now().setLocale('it').toFormat('dd/MM/yyyy HH:mm:ss'),
                 message: msg,
                 status: status
             }
