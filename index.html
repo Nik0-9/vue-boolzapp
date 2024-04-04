@@ -46,6 +46,7 @@
 
                 </div>
                 <div class="contacts">
+                    <div class="alert alert-danger m-2 mt-3" v-if="contactsFiltered.length<1">Non ci sono contatti con questo nome</div>
                     <div class="contact d-flex align-content-start p-2" :class="{'active' : currentId === contact.id}" v-for="(contact, index) in contactsFiltered" :key="contact.id" @click="changeActiveId(contact.id)">
                         <div class="px-2">
                             <img :src="contact.avatar" :alt="contact.name" class="img-fluid ">
