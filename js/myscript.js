@@ -1,6 +1,5 @@
 import { contacts } from "./data.js";
 import Picker from "./emoji-picker.js";
-import Piker from './emoji-picker.js';
 
 const date = luxon.DateTime;
 
