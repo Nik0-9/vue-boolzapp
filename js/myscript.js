@@ -82,9 +82,9 @@ createApp({
         },
         lastAccess(){
             const index = this.activeContact.messages.length - 1;
-            if(index >= 0){
+            if(index >= 0 && this.activeContact.messages[index].status !== 'sent'){
                 return this.activeContact.messages[index].date;
-            }else{
+            }else {
                 return ''
             }
         },
