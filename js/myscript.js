@@ -27,14 +27,18 @@ createApp({
                 message: msg,
                 status: status
             }
+            this.$nextTick(()=>{
+                this.$refs.messages[this.$refs.messages.length - 1].scrollIntoView({behavior: 'smooth'});
+            });
             return newMessage;
         },
         sendMessage() {
            const msg = this.createMessage(this.textMessage, 'sent');
             if(this.textMessage.trim() === ''){
-                return
+                return;
             }
             this.activeContact.messages.push(msg);
+            
             this.textMessage = '';
             setTimeout(() => {
                 this.activeContact.messages.push(this.createMessage('ok', 'received'));
@@ -106,6 +110,6 @@ createApp({
         },
     },
     mounted() {
-        console.log(this.contacts);
+      
     }
 }).component('Picker', Picker).mount('#app')
