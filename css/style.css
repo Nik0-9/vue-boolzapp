@@ -127,6 +127,10 @@ small {
     border-radius: 8px;
 }
 
+.emoji{
+    position: absolute;
+    bottom: 75px;
+}
 /* MEDIA QUERY */
 
 @media screen and (max-width: 768px){

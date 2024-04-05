@@ -12,6 +12,10 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
+
+    <script src="./js/emoji-picker.js" type="module"></script>
+    <link rel="stylesheet" href="./js/style.css">
+
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script type="module" src="js/myscript.js"></script>
     <title>Boolzapp</title>
@@ -82,7 +86,7 @@
                         <img :src="activeContact.avatar" :alt="activeContact.name" class="img-fluid">
                         <div class="d-flex flex-column ps-2">
                             <span>{{activeContact.name}}</span>
-                           Ultimo accesso {{lastAccess}}
+                            Ultimo accesso {{lastAccess}}
                         </div>
                     </div>
                     <div class="d-flex align-items-center gap-4 pe-2">
@@ -102,7 +106,7 @@
                                 </button>
                                 <ul class="dropdownMenu" v-if="dropdownOpen === index">
                                     <li @click="deleteMessage(index)">Elimina messaggio</li>
-                                    <li >Info</li>
+                                    <li>Info</li>
 
                                 </ul>
                             </div>
@@ -112,17 +116,24 @@
                                 </small>
                             </div>
                         </div>
-                        
+
                     </div>
 
                 </div>
                 <!-- SEZIONE INVIO MESSAGGI -->
-                <div class="toolbar d-flex align-items-center justify-content-evenly">
-                    <i class="fa-regular fa-face-smile fa-xl"></i>
-                    <input type="text" class="form-control w-75 " placeholder="scrivi un messaggio"
+                <div class="toolbar d-flex align-items-center justify-content-between p-3">
+                    <div>
+                        <i class="fa-regular fa-face-smile fa-xl" @click="showEmoji = !showEmoji"></i>
+                        <Picker @select="onSelectEmoji" class="emoji" :class="{'d-none': !showEmoji}" />
+                    </div>
+                    <div class="w-100">
+                        <input type="text" class="form-control w-75 " placeholder="scrivi un messaggio"
                         v-model="textMessage" @keyup.enter="sendMessage">
-                    <i class="fa-solid fa-microphone fa-xl" :class="{'d-none' : textMessage.length >= 1}"></i>
-                    <i class="fa-solid fa-paper-plane" :class="{'d-none' : textMessage.length < 1}" @click="sendMessage"></i>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-microphone fa-xl" :class="{'d-none' : textMessage.length >= 1}"></i>
+                        <i class="fa-solid fa-paper-plane" :class="{'d-none' : textMessage.length < 1}" @click="sendMessage"></i>
+                    </div>
                 </div>
             </div>
         </div>
