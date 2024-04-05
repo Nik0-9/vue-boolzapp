@@ -126,3 +126,18 @@ small {
     background-color: lightgray;
     border-radius: 8px;
 }
+
+/* MEDIA QUERY */
+
+@media screen and (max-width: 768px){
+    .right{
+        display: none;
+        width: 100%;
+    }
+    .left{
+        width: 100%;
+    }
+    .container{
+        width: 70%;
+    }
+}

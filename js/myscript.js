@@ -11,7 +11,7 @@ createApp({
             currentId: 1,
             textMessage: '',
             searchText: '',
-            dropdownOpen: -1,
+            dropdownOpen: null,
         }
     },
     methods: {
@@ -42,12 +42,35 @@ createApp({
             if( this.dropdownOpen != index){
                 this.dropdownOpen = index;
             }else{
-                this.dropdownOpen = -1;
+                this.dropdownOpen = null;
             }
         },
-        deleteMessage(index,){
+        deleteMessage(index){
             this.activeContact.messages.splice(index, 1);
             this.toggleDropdown(index);
+        },
+        getContactMessage(id){
+            const index = this.contacts.findIndex((el)=> el.id === id);
+            const messageLastIndex = this.contacts[index].messages.length - 1;
+            if(messageLastIndex >= 0){
+                return this.contacts[index].messages[messageLastIndex];
+            }else {
+                return '';
+            }
+        },
+        getLastMessage(id){
+            if(this.getContactMessage(id)){
+                return this.getContactMessage(id).message;
+            }else{
+                return 'non ci sono messaggi';
+            }
+        },
+        getLastDate(id){
+            if(this.getContactMessage(id)){
+                return this.getContactMessage(id).date;
+            }else{
+                return '';
+            }
         },
     },
     computed: {
@@ -56,7 +79,15 @@ createApp({
         },
         contactsFiltered() {
             return this.contacts.filter((el) => el.name.toLowerCase().includes(this.searchText.toLowerCase()));
-        }
+        },
+        lastAccess(){
+            const index = this.activeContact.messages.length - 1;
+            if(index >= 0){
+                return this.activeContact.messages[index].date;
+            }else{
+                return ''
+            }
+        },
     },
     mounted() {
         console.log(this.contacts);

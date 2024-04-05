@@ -65,15 +65,12 @@
                         <div class="contact-text">
                             <h5>{{contact.name}}</h5>
                             <div>
-                                <small v-if="">{{}}</small>
-                                <small>{{contact.messages[contact.messages.length-1].message}}</small>
-
+                                <small>{{getLastMessage(contact.id)}}</small>
                             </div>
                         </div>
                         <small class="time ms-auto ">
-                            {{contact.messages[contact.messages.length-1].date}}
+                            <small>{{getLastDate(contact.id)}}</small>
                         </small>
-
                     </div>
                 </div>
             </div>
@@ -85,7 +82,7 @@
                         <img :src="activeContact.avatar" :alt="activeContact.name" class="img-fluid">
                         <div class="d-flex flex-column ps-2">
                             <span>{{activeContact.name}}</span>
-                            <small>Ultimo accesso</small>
+                            {{lastAccess}}
                         </div>
                     </div>
                     <div class="d-flex align-items-center gap-4 pe-2">
@@ -105,11 +102,13 @@
                                 </button>
                                 <ul class="dropdownMenu" v-if="dropdownOpen === index">
                                     <li @click="deleteMessage(index)">Elimina messaggio</li>
+                                    <li >Info</li>
+
                                 </ul>
                             </div>
                             <div class="text-end">
                                 <small>
-                                    {{message.date}}
+                                    {{lastAccess}}
                                 </small>
                             </div>
                         </div>
