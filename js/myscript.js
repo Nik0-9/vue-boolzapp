@@ -13,7 +13,8 @@ createApp({
             textMessage: '',
             searchText: '',
             dropdownOpen: null,
-            showEmoji: false
+            showEmoji: false,
+            isDark: false,
         }
     },
     methods: {
@@ -77,6 +78,10 @@ createApp({
             }else{
                 return '';
             }
+        },
+        toggleDark(){
+            this.isDark = !this.isDark;
+            console.log(this.isDark);
         },
         onSelectEmoji(emoji) {
             console.log(emoji)

@@ -25,21 +25,28 @@
     <div id="app">
         <div class="container h-100 bg-light d-flex p-0">
             <!-- LATO SINISTRO -->
-            <div class="left border-end">
+            <div class="left border-end" :class="{ 'dark' : this.isDark}" >
                 <!-- PROFILO -->
-                <div class="toolbar d-flex justify-content-between p-2 ">
+                <div class="toolbar d-flex justify-content-between p-2 " :class="{ 'dark' : this.isDark}">
                     <div>
-                        <img src="img/avatar.png" alt="avatar">
-                        <span>Io</span>
+                       
+                        <div> <img src="img/avatar.png" alt="avatar" :class="{'invert' : this.isDark}">Io</div>
                     </div>
                     <div class="d-flex align-items-center gap-3 pe-2">
+                        <div class="d-flex ">
+                            <label class="form-check-label">Light</label>
+                            <span class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" @click="toggleDark">
+                            </span>
+                            <label class="form-check-label">Dark</label>
+                        </div>
                         <i class="fa-solid fa-circle-notch"></i>
                         <i class="fa-solid fa-message fa-xl"></i>
                         <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
                     </div>
                 </div>
                 <!-- SEZIONE NOTIFICHE -->
-                <div class="notification d-flex align-items-center px-2">
+                <div class="notification d-flex align-items-center px-2" :class="{'invert' : this.isDark}">
                     <div class="bell d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-bell-slash fa-xl"></i>
                     </div>
@@ -49,7 +56,7 @@
                     </div>
                 </div>
                 <!-- SEARCH BAR -->
-                <div class="searchbar ">
+                <div class="searchbar mb-2">
                     <input type="text" class="form-control  p-2" placeholder="&#128269; cerca o inizia una nuova chat"
                         v-model="searchText">
 
@@ -81,7 +88,7 @@
             <!-- LATO DESTRO -->
             <div class="right">
                 <!-- PROFILO UTENTE ATTIVO E TOOLBAR -->
-                <div class="toolbar d-flex align-items-center justify-content-between p-2">
+                <div class="toolbar d-flex align-items-center justify-content-between p-2" :class="{ 'dark' : this.isDark}">
                     <div class="ps-2 d-flex align-items-center ">
                         <div>
                             <img :src="activeContact.avatar" :alt="activeContact.name">
@@ -122,7 +129,7 @@
 
                 </div>
                 <!-- SEZIONE INVIO MESSAGGI -->
-                <div class="toolbar d-flex align-items-center justify-content-between p-3">
+                <div class="toolbar d-flex align-items-center justify-content-between p-3" :class="{ 'dark' : this.isDark}">
                     <div>
                         <i class="fa-regular fa-face-smile fa-xl" @click="showEmoji = !showEmoji"></i>
                         <Picker @select="onSelectEmoji" class="emoji" :class="{'d-none': !showEmoji}" />

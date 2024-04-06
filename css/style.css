@@ -41,9 +41,13 @@ i {
     width: 40%;
 }
 
+.right {
+    width: 60%;
+}
 .notification {
     background-color: #8EDAFC;
     height: 70px;
+    overflow: hidden;
 }
 
 .notification-text>small {
@@ -81,9 +85,6 @@ small {
     color: gray;
 }
 
-.right {
-    width: 60%;
-}
 
 .toolbar {
     height: 70px;
@@ -131,9 +132,16 @@ small {
     position: absolute;
     bottom: 75px;
 }
+.dark{
+    background: rgb(50, 50, 50);
+    color: white;
+}
+.invert{
+    filter: invert(1);
+}
 /* MEDIA QUERY */
 
-@media screen and (max-width: 768px){
+/* @media screen and (max-width: 768px){
     .right{
         display: none;
         width: 100%;
@@ -144,4 +152,4 @@ small {
     .container{
         width: 70%;
     }
-}
+} */
