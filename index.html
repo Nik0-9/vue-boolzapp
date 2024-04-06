@@ -25,11 +25,11 @@
     <div id="app">
         <div class="container h-100 bg-light d-flex p-0">
             <!-- LATO SINISTRO -->
-            <div class="left border-end" :class="{ 'dark' : this.isDark}" >
+            <div class="left border-end" :class="{ 'dark' : this.isDark}">
                 <!-- PROFILO -->
                 <div class="toolbar d-flex justify-content-between p-2 " :class="{ 'dark' : this.isDark}">
                     <div>
-                       
+
                         <div> <img src="img/avatar.png" alt="avatar" :class="{'invert' : this.isDark}">Io</div>
                     </div>
                     <div class="d-flex align-items-center gap-3 pe-2">
@@ -59,7 +59,6 @@
                 <div class="searchbar mb-2">
                     <input type="text" class="form-control  p-2" placeholder="&#128269; cerca o inizia una nuova chat"
                         v-model="searchText">
-
                 </div>
                 <!-- LISTA CONTATTI -->
                 <div class="contacts">
@@ -71,7 +70,7 @@
                         v-for="(contact, index) in contactsFiltered" :key="contact.id"
                         @click="changeActiveContact(contact.id)">
                         <div class="px-2">
-                            <img :src="contact.avatar" :alt="contact.name" >
+                            <img :src="contact.avatar" :alt="contact.name">
                         </div>
                         <div class="contact-text">
                             <h5>{{contact.name}}</h5>
@@ -88,7 +87,8 @@
             <!-- LATO DESTRO -->
             <div class="right">
                 <!-- PROFILO UTENTE ATTIVO E TOOLBAR -->
-                <div class="toolbar d-flex align-items-center justify-content-between p-2" :class="{ 'dark' : this.isDark}">
+                <div class="toolbar d-flex align-items-center justify-content-between p-2"
+                    :class="{ 'dark' : this.isDark}">
                     <div class="ps-2 d-flex align-items-center ">
                         <div>
                             <img :src="activeContact.avatar" :alt="activeContact.name">
@@ -101,7 +101,17 @@
                     <div class="d-flex align-items-center gap-4 pe-2">
                         <i class="fa-solid fa-magnifying-glass fa-xl"></i>
                         <i class="fa-solid fa-paperclip fa-xl"></i>
-                        <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
+                        <div class="dropdown">
+                            <button class="btn " type="button" @click="toggleDropdownContact">
+                                <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
+                            </button>
+                            <div class="dropdown-contact" v-if="dropdownContact" >
+                                <ul class="p-0">
+                                    <li @click="deleteContactMessages">elimina messaggi</li>
+                                    <li @click="deleteContact">elimina chat</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- SEZIONE CHAT -->
@@ -110,10 +120,10 @@
                         <div class="message" :class="message.status">
                             <div class="d-flex justify-content-between">
                                 {{message.message}}
-                                <button class="btn" type="button" @click="toggleDropdown(index)">
+                                <button class="btn" type="button" @click="toggleDropdownChat(index)">
                                     <i class="fa-solid fa-chevron-down fa-xs"></i>
                                 </button>
-                                <ul class="dropdownMenu pb-1" v-if="dropdownOpen === index">
+                                <ul class="dropdownMenu pb-1" v-if="dropdownChat === index">
                                     <li @click="deleteMessage(index)">Elimina messaggio</li>
                                     <li>Info</li>
                                 </ul>
@@ -129,18 +139,20 @@
 
                 </div>
                 <!-- SEZIONE INVIO MESSAGGI -->
-                <div class="toolbar d-flex align-items-center justify-content-between p-3" :class="{ 'dark' : this.isDark}">
+                <div class="toolbar d-flex align-items-center justify-content-between p-3"
+                    :class="{ 'dark' : this.isDark}">
                     <div>
                         <i class="fa-regular fa-face-smile fa-xl" @click="showEmoji = !showEmoji"></i>
                         <Picker @select="onSelectEmoji" class="emoji" :class="{'d-none': !showEmoji}" />
                     </div>
                     <div class="w-100">
                         <input type="text" class="form-control w-75 " placeholder="scrivi un messaggio"
-                        v-model="textMessage" @keyup.enter="sendMessage">
+                            v-model="textMessage" @keyup.enter="sendMessage">
                     </div>
                     <div>
                         <i class="fa-solid fa-microphone fa-xl" :class="{'d-none' : textMessage.length >= 1}"></i>
-                        <i class="fa-solid fa-paper-plane" :class="{'d-none' : textMessage.length < 1}" @click="sendMessage"></i>
+                        <i class="fa-solid fa-paper-plane" :class="{'d-none' : textMessage.length < 1}"
+                            @click="sendMessage"></i>
                     </div>
                 </div>
             </div>

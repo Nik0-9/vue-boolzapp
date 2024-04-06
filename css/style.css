@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: "Reddit Mono", monospace;
+    font-family: "Reddit Mono";
 }
 
 li{
@@ -138,6 +138,16 @@ small {
 }
 .invert{
     filter: invert(1);
+}
+.dropdown-contact{
+    position: absolute;
+    padding: 5px;
+    right: 10px;
+    top: 10px;
+    width: 150px;
+    background-color: lightgray;
+    border-radius: 8px;
+    z-index: 50;
 }
 /* MEDIA QUERY */
 

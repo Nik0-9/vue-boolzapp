@@ -12,15 +12,16 @@ createApp({
             currentId: 1,
             textMessage: '',
             searchText: '',
-            dropdownOpen: null,
+            dropdownChat: null,
             showEmoji: false,
             isDark: false,
+            dropdownContact: false,
         }
     },
     methods: {
         changeActiveContact(id) {
             this.currentId = id;
-            this.dropdownOpen = -1;
+            this.dropdownChat = -1;
         },
         createMessage(msg, status) {
             const newMessage = {
@@ -45,16 +46,16 @@ createApp({
                 this.activeContact.messages.push(this.createMessage('ok', 'received'));
             }, 1000);
         },
-        toggleDropdown(index){
-            if( this.dropdownOpen != index){
-                this.dropdownOpen = index;
+        toggleDropdownChat(index){
+            if( this.dropdownChat != index){
+                this.dropdownChat = index;
             }else{
-                this.dropdownOpen = null;
+                this.dropdownChat = null;
             }
         },
         deleteMessage(index){
             this.activeContact.messages.splice(index, 1);
-            this.toggleDropdown(index);
+            this.toggleDropdownChat(index);
         },
         getContactMessage(id){
             const index = this.contacts.findIndex((el)=> el.id === id);
@@ -83,6 +84,10 @@ createApp({
             this.isDark = !this.isDark;
             console.log(this.isDark);
         },
+        toggleDropdownContact(){
+            this.dropdownContact = !this.dropdownContact;
+            console.log(this.dropdownContact);
+        },
         onSelectEmoji(emoji) {
             console.log(emoji)
             this.textMessage += emoji.i;
@@ -96,6 +101,15 @@ createApp({
                   u: "1f61a" // without tone
               }
               */
+        },
+        deleteContactMessages(){
+            this.activeContact.messages = [];
+        },
+        deleteContact(){
+            const contactIndex = this.contacts.findIndex((contact)=> contact.id === this.currentId);
+            this.contacts.splice(contactIndex, 1);
+            this.currentId = this.currentId + 1;
+            this.dropdownContact = false;
         },
     },
     computed: {
